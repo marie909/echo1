@@ -64,8 +64,8 @@ const LiveAvatarSessionComponent: React.FC<{
   }
 
   return (
-    <div className="w-screen h-screen flex flex-col items-center justify-center gap-4 bg-black">
-      <div className="relative w-[1080px] aspect-[9/16] overflow-hidden flex flex-col items-center justify-center">
+    <div className="relative w-screen h-screen bg-black">
+      <div className="absolute inset-0 flex items-center justify-center">
         <video
           ref={videoRef}
           autoPlay
@@ -73,8 +73,8 @@ const LiveAvatarSessionComponent: React.FC<{
           className="w-full h-full object-contain"
         />
       </div>
-      <div className="w-full h-full flex flex-col items-center justify-center gap-4">
-        <div className="w-full h-full flex flex-row items-center justify-center gap-4">
+      <div className="absolute bottom-0 left-0 right-0 flex flex-col items-center justify-center gap-4 p-4 bg-gradient-to-t from-black/80 to-transparent">
+        <div className="flex flex-row items-center justify-center gap-4">
           <Button
             onClick={() => {
               interrupt();
@@ -96,7 +96,7 @@ const LiveAvatarSessionComponent: React.FC<{
             </Button>
           )}
         </div>
-        <div className="w-full h-full flex flex-row items-center justify-center gap-4">
+        <div className="flex flex-row items-center justify-center gap-4">
           <input
             type="text"
             value={message}
