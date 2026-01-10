@@ -3,7 +3,7 @@
 // Get your avatar ID from your LiveAvatar dashboard
 export const API_KEY = "fd77997a-bdf2-11f0-a99e-066a7fa2e369";
 export const API_URL = "https://api.liveavatar.com";
-export const AVATAR_ID = "706d3efc-bd17-4cec-b774-ad796aaccce1";
+export const AVATAR_ID = "ba7401f5391344f3a1769ad024c7205d";
 
 // FULL MODE Customizations
 // These IDs are for Wayne's avatar - replace with your own avatar's voice and context IDs
