@@ -1,4 +1,4 @@
-import { API_KEY, AVATAR_ID } from "../secrets";
+import { API_KEY, AVATAR_ID } from "../../secrets";
 
 export async function POST(request: Request) {
   try {
