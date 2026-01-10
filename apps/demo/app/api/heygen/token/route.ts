@@ -1,17 +1,15 @@
+import { API_KEY, AVATAR_ID } from "../secrets";
+
 export async function POST(request: Request) {
   try {
     // Parse request body
-    const body = await request.json();
-    const avatarId = body.avatarId;
-
-    // Get environment variables
-    const apiKey = process.env.HEYGEN_API_KEY;
-    const defaultAvatarId = process.env.HEYGEN_AVATAR_ID;
+    const body = await request.json().catch(() => ({}));
+    const avatarId = body.avatarId || AVATAR_ID;
 
     // Validate API key
-    if (!apiKey) {
+    if (!API_KEY) {
       return new Response(
-        JSON.stringify({ error: "HEYGEN_API_KEY not configured" }),
+        JSON.stringify({ error: "API_KEY not configured" }),
         {
           status: 500,
           headers: { "Content-Type": "application/json" },
@@ -19,18 +17,15 @@ export async function POST(request: Request) {
       );
     }
 
-    // Determine which avatar_id to use
-    const finalAvatarId = avatarId || defaultAvatarId;
-
     // Prepare request body for HeyGen API
-    const heygenBody = finalAvatarId ? { avatar_id: finalAvatarId } : {};
+    const heygenBody = avatarId ? { avatar_id: avatarId } : {};
 
     // Call HeyGen token endpoint
     const response = await fetch("https://api.heygen.com/v1/live/tokens", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
+        Authorization: `Bearer ${API_KEY}`,
       },
       body: JSON.stringify(heygenBody),
     });
