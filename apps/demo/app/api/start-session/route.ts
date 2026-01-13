@@ -11,6 +11,13 @@ export async function POST() {
   let session_token = "";
   let session_id = "";
   try {
+    console.log("Requesting session token with:", {
+      url: `${API_URL}/v1/sessions/token`,
+      avatar_id: AVATAR_ID,
+      voice_id: VOICE_ID,
+      context_id: CONTEXT_ID,
+    });
+
     const res = await fetch(`${API_URL}/v1/sessions/token`, {
       method: "POST",
       headers: {
@@ -27,10 +34,14 @@ export async function POST() {
         },
       }),
     });
+    
+    console.log("API Response status:", res.status);
+    
     if (!res.ok) {
       let errorMessage = "Failed to retrieve session token";
       try {
         const resp = await res.json();
+        console.error("API Error response:", resp);
         // Try different error response formats
         if (resp.data && Array.isArray(resp.data) && resp.data[0]?.message) {
           errorMessage = resp.data[0].message;
@@ -45,9 +56,13 @@ export async function POST() {
       }
       return new Response(JSON.stringify({ error: errorMessage }), {
         status: res.status,
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
     }
     const data = await res.json();
+    console.log("API Success response:", data);
 
     session_token = data.data.session_token;
     session_id = data.data.session_id;
@@ -55,12 +70,19 @@ export async function POST() {
     console.error("Error retrieving session token:", error);
     return new Response(JSON.stringify({ error: (error as Error).message }), {
       status: 500,
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
   }
 
   if (!session_token) {
-    return new Response("Failed to retrieve session token", {
+    console.error("No session token received from API");
+    return new Response(JSON.stringify({ error: "Failed to retrieve session token" }), {
       status: 500,
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
   }
   return new Response(JSON.stringify({ session_token, session_id }), {
