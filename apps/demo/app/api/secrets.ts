@@ -7,7 +7,7 @@ export const AVATAR_ID = "706d3efc-bd17-4cec-b774-ad796aaccce1";
 
 // FULL MODE Customizations
 // These IDs are for Wayne's avatar - replace with your own avatar's voice and context IDs
-export const VOICE_ID = "39bbd21dc40145edb26074556cf33eb7";
+export const VOICE_ID = "b24fdc4d-7574-46d0-a956-14b2568ee914";
 export const CONTEXT_ID = "bd0ca04f-22ab-4fbd-9f24-f9e1798ce574";
 export const LANGUAGE = "en";
 
