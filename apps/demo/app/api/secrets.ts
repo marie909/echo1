@@ -1,7 +1,7 @@
 // ⚠️ IMPORTANT: Replace these placeholder values with your actual credentials
 // Get your API key from: https://app.liveavatar.com/settings (or your provider's dashboard)
 // Get your avatar ID from your LiveAvatar dashboard
-export const API_KEY = "tokAImkjf9pam";
+export const API_KEY = "kAImkjf9pam";
 export const API_URL = "https://api.liveavatar.com";
 export const AVATAR_ID = "ba7401f5391344f3a1769ad024c7205d";
 
